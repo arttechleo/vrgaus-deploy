@@ -1,9 +1,0 @@
-{
-  "name": "vrgaus-deploy",
-  "version": "1.0.0",
-  "description": "WebXR Gaussian Splats Viewer",
-  "type": "module",
-  "engines": {
-    "node": ">=18.0.0"
-  }
-} 
