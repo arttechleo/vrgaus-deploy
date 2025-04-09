@@ -1,3 +1,5 @@
+THIS CODE DOES NOT BELONG TO ME
+
 # 3D Gaussian Splats VR Demo
 
 A WebXR-based demo showcasing 3D Gaussian Splats in Virtual Reality using the Gaussian Splats 3D library.
