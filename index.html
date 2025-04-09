@@ -39,8 +39,7 @@
       }
     });
     
-    // Use a CDN-hosted model
-    let path = 'https://projects.markkellogg.org/assets/data/bonsai/bonsai_trimmed.ksplat';
+    let path = './assets/models/bonsai_trimmed.ksplat';
     
     viewer.addSplatScene(path, {
         'rotation': new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 1, 0)).toArray(),
