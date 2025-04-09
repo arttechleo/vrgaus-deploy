@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>3D Gaussian Splat Demo - VR</title>
   <script type="importmap">
     {
@@ -19,16 +20,29 @@
       height: 100vh;
       margin: 0px;
     }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-family: Arial, sans-serif;
+      display: none;
+    }
   </style>
 </head>
+
 <body>
+  <div id="loading">Loading model...</div>
   <script type="module">
     import * as GaussianSplats3D from '@mkkellogg/gaussian-splats-3d';
     import * as THREE from 'three';
+
+    const loadingDiv = document.getElementById('loading');
     
     const viewer = new GaussianSplats3D.Viewer({
       'initialCameraLookAt': [0.20786, -0.68154, -0.27311],
-      'webXRMode': GaussianSplats3D.WebXRMode.AR,
+      'webXRMode': GaussianSplats3D.WebXRMode.VR,
       'useBuiltInControls': true,
       'gpuAccelerated': true,
       'maxPointSize': 50,
@@ -39,25 +53,28 @@
       }
     });
     
-    let path = './assets/models/bonsai_trimmed.ksplat';
+    const modelPath = '/models/bonsai_trimmed.ksplat';
     
-    viewer.addSplatScene(path, {
-        'rotation': new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 1, 0)).toArray(),
-        'scale': [0.5, 0.5, 0.5],
-        'position': [0, 0, 0],
-        'compressionLevel': 2,
-        'shLevel': 0,
-        'blockSize': 1.0,
-        'bucketSize': 8192,
-        'minimumAlpha': 10
+    viewer.addSplatScene(modelPath, {
+      'rotation': new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0, 1, 0), new THREE.Vector3(0, 1, 0)).toArray(),
+      'scale': [0.5, 0.5, 0.5],
+      'position': [0, 0, 0],
+      'compressionLevel': 2,
+      'shLevel': 0,
+      'blockSize': 1.0,
+      'bucketSize': 8192,
+      'minimumAlpha': 10
     })
     .then(() => {
-        console.log('Scene loaded, starting viewer');
-        viewer.start();
+      console.log('Scene loaded, starting viewer');
+      loadingDiv.style.display = 'none';
+      viewer.start();
     })
     .catch(error => {
-        console.error('Error loading scene:', error);
+      console.error('Error loading scene:', error);
+      loadingDiv.textContent = 'Error loading model';
     });
   </script>
 </body>
+
 </html> 
